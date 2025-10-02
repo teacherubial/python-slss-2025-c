@@ -5,7 +5,7 @@
 # Choose your own adventure story focusing on
 # using variables and branching/conditionals
 
-from os import pathconf_names
+from os import path, pathconf_names
 import time
 
 # Introduction
@@ -22,6 +22,8 @@ path_choice = input("Do you go in the door or in the gate? (answer door or gate)
 
 if path_choice == "gate":
     print("You go into the gate.")
+elif path_choice == "door":
+    print("You go through the door.")
 
 # Problem
 
