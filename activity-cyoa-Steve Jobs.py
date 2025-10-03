@@ -5,7 +5,6 @@
 # Choose your own adventure story focusing on
 # using variables and branching/conditionals
 
-from os import path, pathconf_names
 import time
 
 # Introduction
