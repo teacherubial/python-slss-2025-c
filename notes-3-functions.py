@@ -7,7 +7,7 @@ def say_hello():
     print("hello")
 
 # function to print a personalized hello
-def say_hello_personal(name: str):
+def say_hello_personal(name="Tiger"):
     print(f"hello {name}!")
 
 def normalized_input():
@@ -16,9 +16,17 @@ def normalized_input():
 	output = output.strip(",.?! ").lower()
 	return output
 
-# Ask the user for the weather
-print("What's the weather like?")
-weather_reply = normalized_input()
+def some_fun():
+    print("hello!")
+    return None
 
-if weather_reply == "rainy":
-	print("You should bring an umbrella!")
+def some_fun_return() -> str:
+    print("hello!")
+    return "purple monkey dishwasher!"
+    print("does this run?")
+
+return_val = some_fun_return()
+print(return_val)
+
+say_hello_personal("David")
+say_hello_personal()
