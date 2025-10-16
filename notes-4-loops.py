@@ -2,6 +2,7 @@
 # Author: Ubial
 # 14 October 2025
 
+from optparse import make_option
 import turtle
 
 window = turtle.Screen()  # Set up the window and its attributes
@@ -53,9 +54,8 @@ mike.width(4)
 # mike.goto(0, 260)
 # mike.stamp()
 
-# Make a HUNDRED COOKIES
-for counter in range(100):
-    counter = counter * 50
+# Create a function to make cookies
+def make_cookies(x: int, y:int):
     # Cookie Making
     # Set the colour of our choco chip cookie
     mike.color("brown")
@@ -63,26 +63,38 @@ for counter in range(100):
     mike.shapesize(1)
     mike.pu()
     mike.setheading(0)   # mike points east
-    mike.goto(-5 + counter, -30 + counter)
+    mike.goto(-5 + x, -30 + y)
     mike.pd()
     mike.circle(30)
     # Put a chocolate chip at the top-right
     mike.pu()
-    mike.goto(10 + counter, 10 + counter)
+    mike.goto(10 + x, 10 + y)
     mike.stamp()
     # Put a chocolate chip at the bottom-right
-    mike.goto(10 + counter, -10 + counter)
+    mike.goto(10 + x, -10 + y)
     mike.stamp()
     # Put a choco chip at the bottom-left
-    mike.goto(-10 + counter, -10 + counter)
+    mike.goto(-10 + x, -10 + y)
     mike.stamp()
     # Choco chip at the top-left
-    mike.goto(-10 + counter, 10 + counter)
+    mike.goto(-10 + x, 10 + y)
     mike.stamp()
     # Chocolate chip in the middle
-    mike.goto(0 + counter, 0 + counter)
+    mike.goto(0 + x, 0 + y)
     mike.stamp()
 
+# make_cookies(0, 0)     # origin
+# make_cookies(100, 100) # (100,100)
+# make_cookies(-100, -100)
+# make_cookies(-100, 100)
+# make_cookies(100, -100)
 
+# Make cookies in an x
+for counter in range(50):
+    counter = counter * 50
+    make_cookies(-counter, -counter)
+    make_cookies(counter, -counter)
+    make_cookies(counter, counter)
+    make_cookies(-counter, counter)
 
 window.exitonclick()
