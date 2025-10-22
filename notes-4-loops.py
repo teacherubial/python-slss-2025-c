@@ -2,7 +2,7 @@
 # Author: Ubial
 # 14 October 2025
 
-from optparse import make_option
+import random
 import turtle
 
 window = turtle.Screen()  # Set up the window and its attributes
@@ -83,18 +83,12 @@ def make_cookies(x: int, y:int):
     mike.goto(0 + x, 0 + y)
     mike.stamp()
 
-# make_cookies(0, 0)     # origin
-# make_cookies(100, 100) # (100,100)
-# make_cookies(-100, -100)
-# make_cookies(-100, 100)
-# make_cookies(100, -100)
-
-# Make cookies in an x
-for counter in range(50):
-    counter = counter * 50
-    make_cookies(-counter, -counter)
-    make_cookies(counter, -counter)
-    make_cookies(counter, counter)
-    make_cookies(-counter, counter)
+# Make cookies randomly on the screen
+# Make 500 of them
+for _ in range(500):
+    x = random.randrange(-500, 500)
+    y = random.randrange(-500, 500)
+    mike.speed(0)
+    make_cookies(x, y)
 
 window.exitonclick()

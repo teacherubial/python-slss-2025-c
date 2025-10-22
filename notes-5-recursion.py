@@ -119,9 +119,24 @@ def draw_asymmetric_tree(level: int, branch_length: float):
 def factorial(num: int) -> int:
     """Calculate the factorial of the
     given num recursively"""
-    pass
+    if num > 1:
+        return num * factorial(num - 1)
+    else:
+        return 1
 
-t.speed(0)
-draw_asymmetric_tree(4, 225)
+def fibonacci(num: int) -> int:
+    """Returns the nth fibonacci number
+    calculated recursively"""
+    if num > 2:
+        return fibonacci(num - 1) + fibonacci(num - 2)
+    else:
+        return 1
+
+# t.speed(0)
+# draw_asymmetric_tree(4, 225)
+
+print(fibonacci(6))            # 8
+print(fibonacci(8))            # 21
+print(fibonacci(20))
 
 wn.exitonclick()
