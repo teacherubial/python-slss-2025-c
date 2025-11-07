@@ -18,14 +18,25 @@ def vote_listed_choices():
         "D. gong cha"
     ]
 
+    # Buckets to hold all the votes
+    coco = 0
+    chatime = 0
+    bubble_waffel = 0
+    gong_cha = 0
+
     # Show all the bbt choices
     print("Vote for your favourite from the list.")
     print("Give the letter of your choice.")
     for choice in CHOICES:
         print(choice)
     # Ask the user for their choice
+    vote = input("Your vote: ").lower().strip(",.?! ")
     # Add their vote to a running
     # tally
+    if vote == "a":
+        coco = coco + 1  # incrementation
+    elif vote == "b":
+        chatime += 1
     # Give some raw scores
     # Give score as a percentage
 

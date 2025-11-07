@@ -15,6 +15,16 @@ t.goto(0, -200)
 t.color("brown")
 t.width(10)
 t.shape("arrow")        # leaf shape
+t.shapesize(5)
+
+# Create a dictionary of leaf colours
+LEAF_COLOURS = {
+    "spring": "#efc3e6",
+    "summer": "#4da167",
+    "fall": "#7b0d1e",
+    "winter": "#cefdff",
+}
+
 
 def draw_tree(level: int, branch_length: float):
     """Draw a tree recursively at a given level
@@ -36,9 +46,9 @@ def draw_tree(level: int, branch_length: float):
         # 4. Return to the beginning
         t.left(47)
         t.backward(branch_length)
-    else:
+    else:  # base case
         # create a leaf
-        t.color("green")
+        t.color(LEAF_COLOURS["spring"])
         t.stamp()
         t.color("brown")
 
@@ -135,8 +145,10 @@ def fibonacci(num: int) -> int:
 # t.speed(0)
 # draw_asymmetric_tree(4, 225)
 
-print(fibonacci(6))            # 8
-print(fibonacci(8))            # 21
-print(fibonacci(20))
+# print(fibonacci(6))            # 8
+# print(fibonacci(8))            # 21
+# print(fibonacci(20))
+
+draw_tree(4, 250)
 
 wn.exitonclick()
