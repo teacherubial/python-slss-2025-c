@@ -10,7 +10,7 @@ def olympic_judging(num_judges: int):
     total = 0
 
     for n in range(num_judges):
-        cur_score = int(input(f"Judge {n+1}: "))
+        cur_score = float(input(f"Judge {n+1}: "))
 
         total += cur_score
 
@@ -19,7 +19,7 @@ def olympic_judging(num_judges: int):
 def mcdolands(tax: float):
     """
     Params:
-        tax - tax as a percentage"""
+        tax - tax as a percentage e.g. 14%"""
     burger = input("Would you like a burger for $5? (Yes/No)\n").lower().strip(",.?! ")
     fries = input("Would you like fries for $3? (Yes/No)\n").lower().strip(",.?! ")
 
@@ -34,8 +34,8 @@ def mcdolands(tax: float):
 
 
 def main():
-    # age_in_2049()
-    # olympic_judging(5)
+    age_in_2049()
+    olympic_judging(5)
     mcdolands(14)
 
 
