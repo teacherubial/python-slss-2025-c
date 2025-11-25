@@ -16,6 +16,8 @@ def main():
     tiktok_views_col = 15
     artist = "Kendrick Lamar"
 
+    kendrick_songs = []
+
     # open the file
     with open("data/spotify2024.csv") as f:
         # get rid of the header row
@@ -28,7 +30,9 @@ def main():
         for info in r:
             # if the current artist is "Kendrick"
             if info[artist_col] == artist:
-                print(info)
+                kendrick_songs.append(info)
+
+        print(f"Number of Kendrick Songs: {len(kendrick_songs)}")
 
 if __name__ == "__main__":
     main()
