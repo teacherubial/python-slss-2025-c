@@ -32,6 +32,15 @@ def main():
             if info[artist_col] == artist:
                 kendrick_songs.append(info)
 
+        # Heading
+        print(f"Track Name\t\tYouTube Views\t\tTikTok Views")
+        for song in kendrick_songs:
+            current_track = song[song_name_col]
+            current_ytviews = song[yt_views_col]
+            current_tiktokviews = song[tiktok_views_col]
+
+            print(f"{current_track}\t\t{current_ytviews}\t\t{current_tiktokviews}")
+
         print(f"Number of Kendrick Songs: {len(kendrick_songs)}")
 
 if __name__ == "__main__":
