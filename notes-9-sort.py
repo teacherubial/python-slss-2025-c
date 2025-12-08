@@ -21,22 +21,28 @@ def selection_sort(l: list[int], ascending=True) -> list[int]:
 
     # starting at the beginning of the list
     for i in range(num_items):
-        lowest_num = l[i]
-        lowest_index = i
+        candidate_num = l[i]
+        candidate_index = i
 
         # check the rest of the list
         for j in range(i+1, num_items):
-            if l[j] < lowest_num:
-                lowest_num = l[j]
-                lowest_index = j
+            if ascending:
+                if l[j] < candidate_num:
+                    candidate_num = l[j]
+                    candidate_index = j
+            else:
+                if l[j] > candidate_num:
+                    candidate_num = l[j]
+                    candidate_index = j
 
         # swap the current number with the number at the
         # lowest index
-        l[i], l[lowest_index] = l[lowest_index], l[i]
+        l[i], l[candidate_index] = l[candidate_index], l[i]
 
     return l
 
 if __name__ == "__main__":
     sorted_list = selection_sort([1, 43, 55, -11, 100, 34])
-
+    print(sorted_list)
+    sorted_list = selection_sort([1, 43, 55, -11, 100, 34], False)
     print(sorted_list)
