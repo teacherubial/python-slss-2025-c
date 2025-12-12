@@ -1,4 +1,3 @@
-
 # Helper for searching through Spotify results
 
 import csv
@@ -26,5 +25,5 @@ def songs_by_artist(file_path: str, artist: str) -> list[list[str]]:
     return songs
 
 def string_to_num(s: str) -> int:
-    """Converts a string number with commas in it to an inteeger. (e.g. "1,223,222" -> 1223222)"""
-    return int(s.replace(',', ''))
+    """Converts a string number with commas in it to an integer. (e.g. "1,223,222" -> 1223222)"""
+    return int(s.replace(',', '')) if s else 0
