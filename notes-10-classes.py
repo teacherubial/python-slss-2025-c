@@ -34,6 +34,32 @@ class Pokemon:
         print(f"    Level: {self.level}")
         print("--------------------------------")
 
+    def find_something(self, how_many_things=1) -> str:
+        """Send pokemon to find something
+
+        Returns:
+            a list of str representing what it found"""
+        things = ["pinap berry", "razz berry", "nanab berry", "golden razz berry", "leftovers", "moon stone"]
+        found_things = []
+
+        for _ in range(how_many_things):
+            found_things.append(random.choice(things))
+
+        return found_things
+
+class Squirtle(Pokemon):
+    def __init__(self):
+        # Call the constructor of Pokemon
+        super().__init__()
+        self.name = "Squirtle"
+        self.species = "Squirtle"
+        self.type = "water"
+        self.has_sunglasses = True
+
+    def water_gun(self):
+        """Squirtle shoots water out of its mouth"""
+        print(f"{self.name} used water gun!")
+
 
 if __name__ == "__main__":
     # Create a pokemon object
@@ -57,9 +83,17 @@ if __name__ == "__main__":
     if type(pokemon_one) is Pokemon:
         print(f"{pokemon_one.name} is a Pokemon.")
 
+    # print(f"{pokemon_one.name} found these things: {pokemon_one.find_something()}")
+
     # Tell our pokemon to talk
     pokemon_one.talk()
     pokemon_two.talk()
     # Display stats of pokemon_one
     pokemon_one.stats()
     pokemon_two.stats()
+
+    squirtle_one = Squirtle()
+    # use .water_gun()
+    squirtle_one.water_gun()
+    # use .talk()
+    squirtle_one.talk()
