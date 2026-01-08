@@ -5,7 +5,6 @@
 import random
 
 import pygame
-from email.mime import image
 
 # COLOURS - (R, G, B)
 # CONSTANTS ALL HAVE CAPS FOR THEIR NAMES
