@@ -55,7 +55,7 @@ def game():
 
     # Creating the Screen
     screen = pygame.display.set_mode(SIZE)
-    pygame.display.set_caption("Your Title Here")
+    pygame.display.set_caption("Collect Blocks")
 
     # Variables
     done = False
@@ -63,6 +63,7 @@ def game():
 
     # Create a sprite group
     all_sprites_group = pygame.sprite.Group()
+    block_sprites_group = pygame.sprite.Group()
 
     # Create player sprite
     player = Mario()
@@ -79,6 +80,7 @@ def game():
         block.rect.centery = random.randrange(0, HEIGHT)
         # add them to the sprite group
         all_sprites_group.add(block)
+        block_sprites_group.add(block)
 
 
     # ------------ MAIN GAME LOOP
@@ -91,6 +93,16 @@ def game():
 
         # ------ GAME LOGIC
         all_sprites_group.update()
+
+        # TODO: Check if Mario collides with a block
+        # If mario collides with a block, print out
+        # MARIO HAS COLLIDED WITH A BLOCK!
+        blocks_collided = pygame.sprite.spritecollide(player, block_sprites_group, True)
+        if blocks_collided:
+           print("----")
+           print("Mario has collided with a block!")
+           print(blocks_collided)
+
 
         # ------ DRAWING TO SCREEN
         screen.fill(WHITE)
