@@ -45,6 +45,25 @@ class Mario(pygame.sprite.Sprite):
         """Have Mario follow the mouse"""
         self.rect.center = pygame.mouse.get_pos()
 
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self):
+        """Goomba"""
+        super().__init__()
+
+        self.image = pygame.image.load("assets/goomba-nes.png")
+        self.rect = self.image.get_rect()
+        # No initial location -> (0, 0)
+
+        # Velocity of the Enemy
+        self.vel_x = 0
+        self.vel_y = 0
+
+    def update(self):
+        # movement in the x- and y-axis
+        self.rect.x += self.vel_x
+        self.rect.y += self.vel_y
+        # TODO: randomize movement
+
 def game():
     pygame.init()
 
@@ -64,6 +83,7 @@ def game():
     # Create a sprite group
     all_sprites_group = pygame.sprite.Group()
     block_sprites_group = pygame.sprite.Group()
+    enemy_sprites_group = pygame.sprite.Group()
 
     # Create player sprite
     player = Mario()
@@ -71,6 +91,20 @@ def game():
     player.rect.centerx = WIDTH / 2
     player.rect.centery = HEIGHT / 2
     all_sprites_group.add(player)
+
+    # Create 3 enemies to start
+    for _ in range(3):
+        enemy_one = Enemy()
+        # Randomize position at bottom-left
+        random_x = random.randrange(20, 100)
+        random_y = random.randrange(HEIGHT-100, HEIGHT-20)
+        enemy_one.rect.center = random_x, random_y
+        # Randomize velocity
+        enemy_one.vel_x = random.choice([-3, -2, -1, 1, 2, 3])
+        enemy_one.vel_y = random.choice([-3, -2, -1, 1, 2, 3])
+
+        all_sprites_group.add(enemy_one)
+        enemy_sprites_group.add(enemy_one)
 
     # Create 100 blocks
     for _ in range(100):
@@ -93,6 +127,14 @@ def game():
 
         # ------ GAME LOGIC
         all_sprites_group.update()
+
+        # Keep the enemies inside the screen
+        for enemy in enemy_sprites_group:
+            # x-axis and y-axis bounce
+            if enemy.rect.left < 0 or enemy.rect.right > WIDTH:
+                enemy.vel_x = -enemy.vel_x
+            if enemy.rect.top < 0 or enemy.rect.bottom > HEIGHT:
+                enemy.vel_y = -enemy.vel_y
 
         # TODO: Check if Mario collides with a block
         # If mario collides with a block, print out
