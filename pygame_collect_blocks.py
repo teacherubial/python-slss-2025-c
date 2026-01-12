@@ -1,4 +1,4 @@
-# Your Title Here
+# Collect Blocks
 # Author:
 # Date:
 
@@ -34,8 +34,6 @@ class Block(pygame.sprite.Sprite):
         self.rect.centery = 100
 
 class Mario(pygame.sprite.Sprite):
-    # TODO: Make Mario Image face the movement direction
-
     def __init__(self):
         """Player sprite"""
         super().__init__()
@@ -50,6 +48,17 @@ class Mario(pygame.sprite.Sprite):
 
         # Keep track of last x-coord
         self.last_x = 0
+
+        # Mario's "Life"
+        self.health = 100
+
+    def decrease_health(self, mag: int) -> int:
+        """Decrease player's health by magnitude.
+        Returns:
+            current health that Mario has after the change
+        """
+        self.health -= mag
+        return self.health
 
     def update(self):
         """Have Mario follow the mouse.
@@ -113,6 +122,7 @@ def game():
     player.rect.centery = HEIGHT / 2
     all_sprites_group.add(player)
 
+    # TODO: Check collision with Enemies
     # Create 3 enemies to start
     for _ in range(3):
         enemy_one = Enemy()
@@ -165,6 +175,10 @@ def game():
            print(blocks_collided)
 
         # TODO: Mario collides with enemy
+        enemies_collided = pygame.sprite.spritecollide(player, enemy_sprites_group, False)
+        for enemy in enemies_collided:
+            # Decrease Mario's life by some number
+            print(player.decrease_health(1))
 
 
         # ------ DRAWING TO SCREEN
