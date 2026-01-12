@@ -34,16 +34,37 @@ class Block(pygame.sprite.Sprite):
         self.rect.centery = 100
 
 class Mario(pygame.sprite.Sprite):
+    # TODO: Make Mario Image face the movement direction
+
     def __init__(self):
         """Player sprite"""
         super().__init__()
-        self.image = pygame.image.load("assets/mario-snes.png")
+
+        # Two copies of image: right-facing and left-facing
+        self.image_right = pygame.image.load("assets/mario-snes.png")
+        self.image_right = pygame.transform.scale_by(self.image_right, 0.5)
+        self.image_left = pygame.transform.flip(self.image_right, True, False)
+        self.image = self.image_right
 
         self.rect = self.image.get_rect()
 
+        # Keep track of last x-coord
+        self.last_x = 0
+
     def update(self):
-        """Have Mario follow the mouse"""
+        """Have Mario follow the mouse.
+        Set the "right" Mario image based on where he's facing."""
         self.rect.center = pygame.mouse.get_pos()
+
+        # Mario faces right if and only if the previous x
+        # is less than the current x
+        if self.last_x < self.rect.x:
+            self.image = self.image_right
+        elif self.last_x > self.rect.x:
+            self.image = self.image_left
+
+        # Update the last_x
+        self.last_x = self.rect.x
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
@@ -136,14 +157,14 @@ def game():
             if enemy.rect.top < 0 or enemy.rect.bottom > HEIGHT:
                 enemy.vel_y = -enemy.vel_y
 
-        # TODO: Check if Mario collides with a block
-        # If mario collides with a block, print out
-        # MARIO HAS COLLIDED WITH A BLOCK!
+        # Check if Mario collides with a block
         blocks_collided = pygame.sprite.spritecollide(player, block_sprites_group, True)
         if blocks_collided:
            print("----")
            print("Mario has collided with a block!")
            print(blocks_collided)
+
+        # TODO: Mario collides with enemy
 
 
         # ------ DRAWING TO SCREEN
