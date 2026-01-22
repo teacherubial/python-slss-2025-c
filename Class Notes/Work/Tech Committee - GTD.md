@@ -1,0 +1,3 @@
+- [ ] label Mike's projector - 58730
+- [x] 104 Tam's Projector
+- [x] mindy's projector blurry
